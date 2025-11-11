@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Investment - SoberTone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --purple-primary: #36008c;
+            --blue-secondary: #11c9e6;
+            --cyan-accent: #9fc8d3;
+            --navy-dark: #114fa1;
+            --white-neutral: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white-neutral);
+            color: var(--navy-dark);
+        }
+        
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .text-purple-primary {
+            color: var(--purple-primary);
+        }
+        
+        .text-blue-secondary {
+            color: var(--blue-secondary);
+        }
+        
+        .bg-purple-primary {
+            background-color: var(--purple-primary);
+        }
+        
+        .bg-blue-secondary {
+            background-color: var(--blue-secondary);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .investment-card {
+            background: linear-gradient(135deg, rgba(164, 125, 242, 0.1) 0%, rgba(59, 205, 247, 0.1) 100%);
+            border: 2px solid var(--purple-primary);
+        }
+        
+        .funding-goal {
+            background: linear-gradient(135deg, var(--purple-primary) 0%, var(--blue-secondary) 100%);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--purple-primary);
+            box-shadow: 0 0 0 3px rgba(164, 125, 242, 0.1);
+        }
+
+        /* Loading spinner */
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Success/Error message styles */
+        .message {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img src="image1.png" alt="SoberTone Logo" class="h-10 w-auto">
+                    <span class="ml-3 text-xl font-display font-bold text-purple-primary">SoberTone</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-gray-600 hover:text-teal-primary px-3 py-2 rounded-md transition-colors">Home</a>
+                        <a href="about.html" class="text-gray-600 hover:text-teal-primary px-3 py-2 rounded-md transition-colors">About</a>
+                        <a href="resources.html" class="text-gray-600 hover:text-teal-primary px-3 py-2 rounded-md transition-colors">Resources</a>
+                        <a href="contact.html" class="text-purple-primary font-medium px-3 py-2 rounded-md">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-purple-primary">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+                <a href="index.html" class="text-gray-600 hover:text-purple-primary block px-3 py-2 rounded-md transition-colors">Home</a>
+                <a href="about.html" class="text-gray-600 hover:text-purple-primary block px-3 py-2 rounded-md transition-colors">About</a>
+                <a href="resources.html" class="text-gray-600 hover:text-purple-primary block px-3 py-2 rounded-md transition-colors">Resources</a>
+                <a href="contact.html" class="text-purple-primary font-medium block px-3 py-2 rounded-md">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-purple-primary py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl font-display font-bold text-white mb-6">Invest in SoberTone</h1>
+            <p class="text-xl text-white max-w-3xl mx-auto leading-relaxed">
+                Join us in revolutionizing addiction support through AI technology. We're seeking strategic partners 
+                and investors who share our vision of making mental health support accessible to everyone.
+            </p>
+        </div>
+    </section>
+
+    <!-- Investment Opportunity -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-display font-bold text-teal-primary mb-6">Investment Opportunity</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Be part of the solution to one of the world's most pressing health challenges while building 
+                    a profitable business in the rapidly growing digital wellness market.
+                </p>
+            </div>
+            
+            <!-- Funding Goal -->
+            <div class="funding-goal text-white p-8 rounded-lg mb-16 text-center">
+                <h3 class="text-3xl font-display font-bold mb-4">₹1 Crore Seed Round</h3>
+                <p class="text-xl mb-6">Pre-Money Valuation: ₹3.25 Crores | Equity Offered: ~23.5%</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <div class="text-2xl font-bold">₹4.25Cr</div>
+                        <div class="text-sm opacity-90">Post-Money Valuation</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold">11.25:1</div>
+                        <div class="text-sm opacity-90">CLV:CAC Ratio</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold">70%</div>
+                        <div class="text-sm opacity-90">Gross Margin</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold">6-8x</div>
+                        <div class="text-sm opacity-90">Exit Multiple</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Use of Funds -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-display font-bold text-teal-primary mb-8 text-center">Use of Funds</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="card-hover bg-white p-6 rounded-lg shadow-lg text-center border-2 border-teal-100">
+                        <div class="text-4xl font-bold text-teal-primary mb-2">40%</div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Product & AI Development</h4>
+                        <p class="text-gray-600 text-sm">Enhancing AI voice engine, mobile app development, and platform scalability</p>
+                    </div>
+                    
+                    <div class="card-hover bg-white p-6 rounded-lg shadow-lg text-center border-2 border-coral-100">
+                        <div class="text-4xl font-bold text-coral-secondary mb-2">35%</div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Marketing & Partnerships</h4>
+                        <p class="text-gray-600 text-sm">User acquisition, brand building, and strategic partnerships</p>
+                    </div>
+                    
+                    <div class="card-hover bg-white p-6 rounded-lg shadow-lg text-center border-2 border-green-100">
+                        <div class="text-4xl font-bold text-green-600 mb-2">15%</div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Team Expansion</h4>
+                        <p class="text-gray-600 text-sm">Hiring key talent in AI, product, and customer success</p>
+                    </div>
+                    
+                    <div class="card-hover bg-white p-6 rounded-lg shadow-lg text-center border-2 border-blue-100">
+                        <div class="text-4xl font-bold text-blue-600 mb-2">10%</div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Operations & Infrastructure</h4>
+                        <p class="text-gray-600 text-sm">Cloud infrastructure, compliance, and operational costs</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Why Invest -->
+            <div class="investment-card p-8 rounded-lg">
+                <h3 class="text-3xl font-display font-bold text-teal-primary mb-8 text-center">Why Invest in SoberTone?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-4">Market Opportunity</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• $35B+ global addiction treatment market</li>
+                            <li>• 6.5% annual growth rate</li>
+                            <li>• Increasing smartphone penetration</li>
+                            <li>• Growing acceptance of digital health solutions</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-4">Competitive Advantages</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Unique AI + familiar voice technology</li>
+                            <li>• Evidence-based CBT integration</li>
+                            <li>• Personalized, scalable support</li>
+                            <li>• Strong retention and low CAC</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-4">Business Model</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Freemium model with premium subscriptions</li>
+                            <li>• B2B enterprise wellness partnerships</li>
+                            <li>• Multiple revenue streams</li>
+                            <li>• High gross margins (70%)</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-4">Social Impact</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Addressing a critical global health crisis</li>
+                            <li>• Making mental health support accessible</li>
+                            <li>• Reducing healthcare costs</li>
+                            <li>• Saving and improving lives</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-display font-bold text-teal-primary mb-6">Get in Touch</h2>
+                <p class="text-xl text-gray-600">
+                    Ready to learn more about our investment opportunity or discuss partnership possibilities?
+                </p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <!-- Add this message container right after the form opening tag -->
+                <div id="message-container"></div>
+
+                <form id="contact-form" class="contact-form space-y-6">
+                    <!-- Your existing form fields remain exactly the same -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                            <input type="text" id="name" name="name" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" id="email" name="email" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Company/Organization</label>
+                            <input type="text" id="company" name="company" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        
+                        <div>
+                            <label for="interest" class="block text-sm font-medium text-gray-700 mb-2">Interest Type *</label>
+                            <select id="interest" name="interest" required 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                                <option value="">Select your interest</option>
+                                <option value="investor">Potential Investor</option>
+                                <option value="partner">Strategic Partner</option>
+                                <option value="advisor">Advisor/Mentor</option>
+                                <option value="customer">Potential Customer</option>
+                                <option value="media">Media Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="investment-range" class="block text-sm font-medium text-gray-700 mb-2">Investment Range (if applicable)</label>
+                        <select id="investment-range" name="investment-range" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                            <option value="">Select investment range</option>
+                            <option value="below-50l">Below ₹50 Lakhs</option>
+                            <option value="50l-1cr">₹50 Lakhs - ₹1 Crore</option>
+                            <option value="1cr-2cr">₹1 Crore - ₹2 Crores</option>
+                            <option value="above-2cr">Above ₹2 Crores</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                        <textarea id="message" name="message" rows="5" required 
+                                placeholder="Tell us about your interest in SoberTone, your investment thesis, or how you'd like to collaborate..."
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none resize-none"></textarea>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="newsletter" name="newsletter" 
+                            class="w-4 h-4 text-teal-primary border-gray-300 rounded focus:ring-teal-500">
+                        <label for="newsletter" class="ml-2 text-sm text-gray-600">
+                            I'd like to receive updates about SoberTone's progress and industry insights
+                        </label>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" id="submit-button"
+                                class="bg-teal-primary text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-teal-700 transition-colors flex items-center justify-center mx-auto">
+                            <span id="button-text">Send Message</span>
+                            <div id="spinner" class="spinner hidden"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-display font-bold text-teal-primary mb-6">Direct Contact</h2>
+                <p class="text-xl text-gray-600">
+                    Prefer to reach out directly? Here are the best ways to connect with our team.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-hover bg-gray-50 p-8 rounded-lg text-center">
+                    <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Email</h3>
+                    <p class="text-gray-600 mb-4">For investment inquiries and partnerships</p>
+                    <a href="mailto:invest@sobertone.com" class="text-teal-primary font-semibold hover:underline">
+                        sober1t12@.gmailcom
+                    </a>
+                </div>
+                
+                <div class="card-hover bg-gray-50 p-8 rounded-lg text-center">
+                    <div class="w-16 h-16 bg-coral-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-coral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Phone</h3>
+                    <p class="text-gray-600 mb-4">For urgent matters and direct conversations</p>
+                    <a href="tel:+91-XXXXXXXXXX" class="text-coral-secondary font-semibold hover:underline">
+                        +91-6367707168
+                    </a>
+                </div>
+                
+                <div class="card-hover bg-gray-50 p-8 rounded-lg text-center">
+                    <div class="w-16 h-16 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Location</h3>
+                    <p class="text-gray-600 mb-4">Based in India with global reach</p>
+                    <p class="text-green-600 font-semibold">
+                        India (Available for global meetings)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-teal-primary">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-display font-bold text-white mb-6">Ready to Transform Mental Health?</h2>
+            <p class="text-xl text-white mb-8 leading-relaxed">
+                Join us in building the future of addiction support. Whether you're an investor, partner, or advocate, 
+                together we can make mental health support accessible to everyone who needs it.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="document.getElementById('message').focus()" 
+                        class="bg-white text-teal-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+                    Start the Conversation
+                </button>
+                <a href="resources/ERTca2Sem7.pptx" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-teal-primary transition-colors">
+                    Download Pitch Deck
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="image1.png" alt="SoberTone Logo" class="h-8 w-auto">
+                        <span class="ml-2 text-lg font-display font-bold">SoberTone</span>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        AI-powered addiction prevention support making mental health accessible to everyone.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a></li>
+                        <li><a href="resources.html" class="text-gray-300 hover:text-white transition-colors">Resources</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li>Email: sober1t12@gmail.com</li>
+                        <li>Phone: +91-6367707168</li>
+                        <li>Location: LPU, Punjab, India</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2024 SoberTone. All rights reserved. Making mental health support accessible to all.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+    // Initialize EmailJS
+    emailjs.init("xfz9QfU46l0S421gg");
+    
+    let lastSubmissionTime = 0;
+
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Rate limiting
+        const currentTime = Date.now();
+        if (currentTime - lastSubmissionTime < 30000) {
+            showMessage('Please wait 30 seconds before submitting another message.', 'error');
+            return;
+        }
+        
+        // Get form data
+        const formData = new FormData(event.target);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            company: formData.get('company'),
+            interest: formData.get('interest'),
+            investment_range: formData.get('investment-range'),
+            message: formData.get('message'),
+            newsletter: formData.get('newsletter') ? 'Yes' : 'No',
+            date: new Date().toLocaleString()
+        };
+        
+        // Validate form
+        if (!validateForm(data)) {
+            showMessage('Please check your information and try again.', 'error');
+            return;
+        }
+        
+        // Show loading state
+        const submitButton = document.getElementById('submit-button');
+        const buttonText = document.getElementById('button-text');
+        const spinner = document.getElementById('spinner');
+        
+        buttonText.textContent = 'Sending...';
+        spinner.classList.remove('hidden');
+        submitButton.disabled = true;
+        
+        // Send email
+        emailjs.send('service_zs94jve', 'template_lsnwvqf', data)
+            .then(function(response) {
+                lastSubmissionTime = Date.now();
+                showMessage('Thank you for your interest in SoberTone! We will get back to you within 24 hours.', 'success');
+                document.getElementById('contact-form').reset();
+            }, function(error) {
+                showMessage('Sorry, there was an error. Please try again or contact us directly at sober1t12@gmail.com.', 'error');
+            })
+            .finally(function() {
+                buttonText.textContent = 'Send Message';
+                spinner.classList.add('hidden');
+                submitButton.disabled = false;
+            });
+    });
+
+    function validateForm(data) {
+        // Basic validation
+        if (!data.name || !data.email || !data.message) {
+            return false;
+        }
+        
+        // Email format validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email)) {
+            return false;
+        }
+        
+        // Simple spam detection
+        const spamKeywords = ['http://', 'https://', '[url]', 'viagra', 'casino'];
+        const message = data.message.toLowerCase();
+        
+        for (let keyword of spamKeywords) {
+            if (message.includes(keyword)) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+
+    function showMessage(text, type) {
+        const messageContainer = document.getElementById('message-container');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${type === 'success' ? 'success-message' : 'error-message'}`;
+        messageDiv.textContent = text;
+        
+        messageContainer.innerHTML = '';
+        messageContainer.appendChild(messageDiv);
+        
+        if (type === 'success') {
+            setTimeout(() => {
+                messageDiv.style.opacity = '0';
+                messageDiv.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => messageContainer.removeChild(messageDiv), 500);
+            }, 5000);
+        }
+    }
+</script>
+</body>
