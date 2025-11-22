@@ -229,28 +229,28 @@ function initializeTeamCards() {
             name: "Ankit Jangir",
             role: "Founder & CEO",
             expertise: "AI/ML Specialist, Behavioral Psychology",
-            image: "resources/team-ankit.jpg",
+            image: "team-ankit.jpg",
             bio: "Ankit is a passionate AI/ML specialist with deep interest in behavioral psychology. He founded SoberTone with the vision of using technology to make mental health support accessible to everyone. His background in machine learning and understanding of human behavior drives the innovative approach of SoberTone's AI voice technology."
         },
         {
             name: "Ayush",
             role: "Tech Lead",
             expertise: "AI Voice Engine, App Architecture",
-            image: "resources/team-ayush.jpg",
+            image: "team-ayush.jpg",
             bio: "Ayush leads the technical development of SoberTone's AI voice engine and mobile application architecture. With expertise in natural language processing and voice synthesis, he ensures that the platform delivers personalized, empathetic support to users in their most challenging moments."
         },
         {
             name: "Vikas Kumar",
             role: "Marketing Specialist",
             expertise: "Social Media, Digital Marketing",
-            image: "resources/team-vikas.jpg",
+            image: "team-vikas.jpg",
             bio: "Vikas heads all marketing initiatives for SoberTone, focusing on building awareness about addiction prevention and the innovative solutions offered by the platform. His strategic approach to digital marketing helps reach those who need support most."
         },
         {
             name: "Rao Krishna",
             role: "Advisor",
             expertise: "Mental Health Enthusiast",
-            image: "resources/team-rao.jpg",
+            image: "team-rao.jpg",
             bio: "Rao Krishna brings extensive experience in mental health advocacy and support. As an advisor, he ensures that SoberTone's approach aligns with evidence-based practices and maintains the highest standards of care for individuals struggling with addiction."
         }
     ];
