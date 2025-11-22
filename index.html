@@ -8,196 +8,347 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --purple-primary: #36008c;
-            --blue-secondary: #11c9e6;
-            --cyan-accent: #9fc8d3;
-            --navy-dark: #114fa1;
-            --white-neutral: #FFFFFF;
+            /* Warm Orange Color Palette - No Gradients */
+            --primary-orange: #FF6B35;
+            --warm-coral: #F4A261;
+            --terracotta: #E07A5F;
+            --deep-orange: #D4734B;
+            --light-orange: #FF8C42;
+
+            /* Backgrounds */
+            --cream-bg: #FFF8F0;
+            --peach-bg: #FFE8D6;
+            --white-soft: #FFFFFF;
+            --warm-bg: #FFFBF7;
+
+            /* Text & Neutrals */
+            --warm-dark: #2A1F20;
+            --warm-gray: #6B5D58;
+            --light-gray: #A8A8A8;
         }
-        
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--warm-white);
-            color: var(--charcoal-text);
+            background-color: var(--warm-bg);
+            color: var(--warm-dark);
         }
-        
+
         .font-display {
             font-family: 'Playfair Display', serif;
         }
-        
-        .font-mono {
-            font-family: 'Source Code Pro', monospace;
-        }
-        
-        .bg-purple-primary {
-            background-color: var(--purple-primary);
-        }
-        
-        .bg-blue-secondary {
-            background-color: var(--blue-secondary);
-        }
-        
-        .text-purple-primary {
-            color: var(--purple-primary);
-        }
-        
-        .text-blue-secondary {
-            color: var(--blue-secondary);
-        }
-        
-        .hero-bg {
-            background: linear-gradient(135deg, var(--purple-primary) 0%, var(--blue-secondary) 100%);
+
+        .hero-gradient {
+            background: var(--primary-orange);
             position: relative;
-            overflow: hidden;
         }
-        
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('resources/hero-bg.jpg') center/cover;
-            opacity: 0.3;
-            z-index: 1;
+
+        .card-modern {
+            background: white;
+            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 107, 53, 0.1);
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.08);
         }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
+
+        .card-modern:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(255, 107, 53, 0.15);
+            border-color: rgba(255, 107, 53, 0.2);
         }
-        
-        .animate-fade-in-up {
-            animation: fadeInUp 0.6s ease-out forwards;
+
+        .btn-primary {
+            background: var(--primary-orange);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 60px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+            letter-spacing: 0.3px;
         }
-        
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+            background: var(--light-orange);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-orange);
+            padding: 18px 36px;
+            border-radius: 60px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid white;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+            letter-spacing: 0.3px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-orange);
+        }
+
+        .section-header {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--warm-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .section-header {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+            }
+
+            .card-modern {
+                border-radius: 15px;
+            }
+
+            .card-modern:hover {
+                transform: translateY(-4px);
+            }
+
+            /* Fix icon sizing on mobile */
+            svg {
+                flex-shrink: 0;
+                max-width: 24px;
+                max-height: 24px;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Better touch targets */
+            button, a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            /* Improved spacing */
+            .hero-gradient h1 {
+                font-size: 2.5rem !important;
+            }
+
+            /* Better card padding on mobile */
+            .card-modern {
+                padding: 1.25rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-header {
+                font-size: 1.75rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .hero-gradient h1 {
+                font-size: 2rem !important;
+            }
+
+            /* Even smaller icons for very small screens */
+            svg {
+                max-width: 20px;
+                max-height: 20px;
+            }
+
+            .mascot-shadow img {
+                max-width: 220px;
+            }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .mascot-container {
+
+        .nav-link {
+            color: var(--warm-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
             position: relative;
-            display: inline-block;
         }
-        
-        .mascot-container::after {
+
+        .nav-link:hover {
+            color: var(--primary-orange);
+        }
+
+        .nav-link.active::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 20px;
-            background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, transparent 70%);
-            border-radius: 50%;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary-orange);
+            border-radius: 2px;
         }
-        
-        .voice-waveform {
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--peach-bg);
+            border-radius: 24px;
             display: flex;
             align-items: center;
-            gap: 2px;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.1);
         }
-        
-        .voice-waveform .bar {
-            width: 3px;
-            background: var(--teal-primary);
-            border-radius: 2px;
-            animation: waveform 1.5s ease-in-out infinite;
+
+        .card-modern:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.2);
         }
-        
-        .voice-waveform .bar:nth-child(2) { animation-delay: 0.1s; }
-        .voice-waveform .bar:nth-child(3) { animation-delay: 0.2s; }
-        .voice-waveform .bar:nth-child(4) { animation-delay: 0.3s; }
-        .voice-waveform .bar:nth-child(5) { animation-delay: 0.4s; }
-        
-        @keyframes waveform {
-            0%, 100% { height: 10px; }
-            50% { height: 30px; }
-        }
-        
+
         .gradient-text {
-            background: linear-gradient(135deg, var(--purple-primary), var(--blue-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary-orange);
         }
-        
-        .card-hover {
+
+        .problem-badge {
+            background: linear-gradient(135deg, #FEE2E2, #FECACA);
+            border-left: 5px solid #EF4444;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.08);
             transition: all 0.3s ease;
         }
-        
-        .card-hover:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+        .problem-badge:hover {
+            transform: translateX(5px);
+            box-shadow: 0 12px 35px rgba(239, 68, 68, 0.12);
         }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--purple-primary), var(--blue-secondary));
-            transition: all 0.3s ease;
+
+        .mascot-shadow {
+            filter: drop-shadow(0 25px 50px rgba(255, 107, 53, 0.25));
         }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(60, 128, 125, 0.3);
+
+        /* Icon Fixes */
+        .icon-wrapper {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
-        
-        .stats-counter {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--purple-primary);
+
+        .icon-wrapper svg {
+
+            }
+            width: 100%;
+            height: 100%;
         }
-        
-        .section-divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--blue-secondary), transparent);
-            margin: 4rem 0;
+
+        /* List improvements for mobile */
+        li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        li svg {
+
+            }
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+
+        /* Enhanced problem badge for mobile */
+        .problem-badge {
+            background: linear-gradient(135deg, #FEE2E2, #FECACA);
+            border-left: 4px solid #EF4444;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .problem-badge {
+                padding: 1.25rem;
+                border-radius: 12px;
+            }
+
+            .problem-badge h3 {
+                font-size: 1.125rem;
+            }
+
+            .problem-badge li {
+                font-size: 0.875rem;
+                line-height: 1.5;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <nav class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <img src="image1.png" alt="SoberTone Logo" class="h-10 w-auto">
-                    <span class="ml-3 text-xl font-display font-bold text-purple-primary">SoberTone</span>
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <img src="image1.png" alt="SoberTone Logo" class="h-12 w-auto">
+                    <span class="text-2xl font-display font-bold gradient-text">SoberTone</span>
                 </div>
-                
+
                 <!-- Desktop Navigation -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="index.html" class="text-purple-primary font-medium px-3 py-2 rounded-md">Home</a>
-                        <a href="about.html" class="text-gray-600 hover:text-purple-primary px-3 py-2 rounded-md transition-colors">About</a>
-                        <a href="resources.html" class="text-gray-600 hover:text-purple-primary px-3 py-2 rounded-md transition-colors">Resources</a>
-                        <a href="contact.html" class="text-gray-600 hover:text-purple-primary px-3 py-2 rounded-md transition-colors">Contact</a>
-                    </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
                 </div>
-                
+
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-600 hover:text-purple-primary">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-primary-orange transition-colors">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -205,47 +356,52 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="md:hidden hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-                <a href="index.html" class="text-purple-primary font-medium block px-3 py-2 rounded-md">Home</a>
-                <a href="about.html" class="text-gray-600 hover:text-purple-primary block px-3 py-2 rounded-md transition-colors">About</a>
-                <a href="resources.html" class="text-gray-600 hover:text-purple-primary block px-3 py-2 rounded-md transition-colors">Resources</a>
-                <a href="contact.html" class="text-gray-600 hover:text-purple-primary block px-3 py-2 rounded-md transition-colors">Contact</a>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-4 pt-4 pb-6 space-y-3">
+                <a href="index.html" class="block text-primary-orange font-semibold py-2">Home</a>
+                <a href="about.html" class="block nav-link py-2">About</a>
+                <a href="resources.html" class="block nav-link py-2">Resources</a>
+                <a href="contact.html" class="block nav-link py-2">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-bg min-h-screen flex items-center">
-        <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="text-center lg:text-left">
-                    <h1 class="text-5xl lg:text-6xl font-display font-bold text-white mb-6">
+    <section class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="text-center lg:text-left fade-in-up">
+                    <h1 class="text-5xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight">
                         AI-Powered
-                        <span class="gradient-text block">Addiction Support</span>
+                        <span class="block mt-2">Addiction Support</span>
                     </h1>
-                    <div class="text-xl text-white mb-8 h-16">
+                    <div class="text-xl text-white/90 mb-8 h-16">
                         <span id="typed-stats"></span>
                     </div>
-                    <p class="text-lg text-white mb-8 leading-relaxed">
-                        SoberTone uses personalized AI voice technology to provide real-time emotional support, 
+                    <p class="text-lg text-white/95 mb-10 leading-relaxed max-w-2xl">
+                        SoberTone uses personalized AI voice technology to provide real-time emotional support,
                         helping individuals navigate cravings and triggers with familiar, comforting voices of loved ones.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <button class="btn-primary text-white px-8 py-3 rounded-lg font-semibold text-lg">
+                        <button class="btn-primary">
                             Try AI Voice Demo
                         </button>
-                        <a href="contact.html" class="bg-white text-teal-primary px-8 py-3 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors text-center">
+                        <a href="contact.html" class="btn-secondary text-center">
                             Join Our Mission
                         </a>
                     </div>
                 </div>
-                
-                <div class="flex justify-center">
-                    <div class="mascot-container floating">
-                        <img src="image2.png" alt="SoberTone Mascot" class="w-80 h-80 object-contain">
+
+                <div class="flex justify-center fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="floating mascot-shadow">
+                        <img src="image2.png" alt="SoberTone Mascot" class="w-full max-w-md h-auto object-contain">
                     </div>
                 </div>
             </div>
@@ -253,175 +409,189 @@
     </section>
 
     <!-- Problem Statement -->
-    <section class="py-20 bg-white">
+    <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-display font-bold text-teal-primary mb-6">The Addiction Crisis</h2>
+                <h2 class="section-header font-display">The Addiction Crisis</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Addiction affects millions worldwide, yet current solutions are often inaccessible, expensive, and impersonal.
                 </p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <div class="text-center card-hover bg-gray-50 p-8 rounded-lg">
-                    <div class="stats-counter mb-4">350M+</div>
+                <div class="card-modern p-10 text-center">
+                    <div class="stat-number mb-3">350M+</div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">People Affected</h3>
                     <p class="text-gray-600">Worldwide struggle with addiction</p>
                 </div>
-                <div class="text-center card-hover bg-gray-50 p-8 rounded-lg">
-                    <div class="stats-counter mb-4">60%+</div>
+                <div class="card-modern p-10 text-center">
+                    <div class="stat-number mb-3">60%+</div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Relapse Rate</h3>
                     <p class="text-gray-600">Due to lack of real-time support</p>
                 </div>
-                <div class="text-center card-hover bg-gray-50 p-8 rounded-lg">
-                    <div class="stats-counter mb-4">$35B+</div>
+                <div class="card-modern p-10 text-center">
+                    <div class="stat-number mb-3">$35B+</div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Market Size</h3>
                     <p class="text-gray-600">Global addiction treatment market</p>
                 </div>
             </div>
-            
-            <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg">
-                <h3 class="text-lg font-semibold text-red-800 mb-2">Current Challenges</h3>
-                <ul class="space-y-2 text-red-700">
-                    <li>• Rehabilitation and therapy options are expensive and inaccessible</li>
-                    <li>• Existing solutions lack personalization and real-time support</li>
-                    <li>• High relapse rates due to insufficient ongoing emotional support</li>
-                    <li>• Limited access to immediate help during critical moments</li>
+
+            <div class="problem-badge">
+                <h3 class="text-xl font-bold text-red-800 mb-4">Current Challenges</h3>
+                <ul class="space-y-3 text-red-700">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                        Rehabilitation and therapy options are expensive and inaccessible
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                        Existing solutions lack personalization and real-time support
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                        High relapse rates due to insufficient ongoing emotional support
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                        Limited access to immediate help during critical moments
+                    </li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
     <!-- SoberTone Solution -->
-    <section class="py-20 bg-gray-50">
+    <section class="py-24" style="background: var(--cream-bg);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-display font-bold text-teal-primary mb-6">The SoberTone Solution</h2>
+                <h2 class="section-header font-display gradient-text">The SoberTone Solution</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Revolutionary AI-driven mobile app that provides personalized, voice-based support during critical moments of addiction recovery.
                 </p>
             </div>
-            
+
             <!-- AI Voice Demo -->
-            <div class="bg-white rounded-lg shadow-lg p-8 mb-12">
-                <h3 class="text-2xl font-semibold text-teal-primary mb-6 text-center">Experience Our AI Voice Support</h3>
-                <div id="voice-demo" class="max-w-4xl mx-auto">
-                    <div class="mb-6">
+            <div class="card-modern p-10 mb-16 max-w-5xl mx-auto">
+                <h3 class="text-3xl font-display font-bold gradient-text mb-8 text-center">Experience Our AI Voice Support</h3>
+                <div id="voice-demo">
+                    <div class="mb-8">
                         <h4 class="text-lg font-semibold text-gray-800 mb-4">Choose a scenario:</h4>
-                        <div id="scenarios" class="flex flex-wrap justify-center gap-2"></div>
+                        <div id="scenarios" class="flex flex-wrap justify-center gap-3"></div>
                     </div>
-                    <div class="mb-6">
+                    <div class="mb-8">
                         <h4 class="text-lg font-semibold text-gray-800 mb-4">Select voice type:</h4>
-                        <div id="voices" class="flex flex-wrap justify-center gap-2"></div>
+                        <div id="voices" class="flex flex-wrap justify-center gap-3"></div>
                     </div>
                     <div id="response"></div>
                 </div>
             </div>
-            
+
             <!-- Features Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                <div class="card-hover bg-white p-6 rounded-lg shadow-lg">
-                    <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 0h10m-10 0a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2"></path>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-modern p-8">
+                    <div class="feature-icon">
+                        <svg class="w-8 h-8 text-primary-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Personalized Voices</h3>
-                    <p class="text-gray-600">Choose familiar voices of friends and family for comfort and support</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Personalized Voices</h3>
+                    <p class="text-gray-600 leading-relaxed">Choose familiar voices of friends and family for comfort and support during challenging moments</p>
                 </div>
-                
-                <div class="card-hover bg-white p-6 rounded-lg shadow-lg">
-                    <div class="w-12 h-12 bg-coral-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-coral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+
+                <div class="card-modern p-8">
+                    <div class="feature-icon">
+                        <svg class="w-8 h-8 text-primary-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">24/7 Availability</h3>
-                    <p class="text-gray-600">Instant support whenever and wherever you need it most</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">24/7 Availability</h3>
+                    <p class="text-gray-600 leading-relaxed">Instant support whenever and wherever you need it most, day or night</p>
                 </div>
-                
-                <div class="card-hover bg-white p-6 rounded-lg shadow-lg">
-                    <div class="w-12 h-12 bg-sage-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                <div class="card-modern p-8">
+                    <div class="feature-icon">
+                        <svg class="w-8 h-8 text-primary-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">CBT-Based Approach</h3>
-                    <p class="text-gray-600">Evidence-based cognitive behavioral therapy techniques integrated with AI</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">CBT-Based Approach</h3>
+                    <p class="text-gray-600 leading-relaxed">Evidence-based cognitive behavioral therapy techniques integrated with AI technology</p>
                 </div>
             </div>
-            
+
             <!-- Progress Tracker -->
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h3 class="text-2xl font-semibold text-teal-primary mb-6 text-center">Recovery Journey Tracker</h3>
+            <div class="card-modern p-10 mt-16">
+                <h3 class="text-3xl font-display font-bold gradient-text mb-8 text-center">Recovery Journey Tracker</h3>
                 <div id="progress-tracker"></div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
     <!-- Market Opportunity -->
-    <section class="py-20 bg-white">
+    <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-display font-bold text-teal-primary mb-6">Market Opportunity</h2>
+                <h2 class="section-header font-display">Market Opportunity</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     The digital wellness market is rapidly growing, with increasing acceptance of AI-powered health solutions.
                 </p>
             </div>
-            
-            <!-- Impact Calculator -->
-            <div class="mb-16">
-                <div id="impact-calculator"></div>
-            </div>
-            
+
             <!-- Market Stats -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center card-hover bg-teal-50 p-6 rounded-lg">
-                    <div class="text-3xl font-bold text-teal-primary mb-2">$35B+</div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-1">Global Market</h3>
+                <div class="card-modern p-8 text-center" style="background: white;">
+                    <div class="text-4xl font-bold mb-3" style="color: var(--primary-orange);">$35B+</div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Global Market</h3>
                     <p class="text-sm text-gray-600">Addiction treatment market size</p>
                 </div>
-                
-                <div class="text-center card-hover bg-coral-50 p-6 rounded-lg">
-                    <div class="text-3xl font-bold text-coral-secondary mb-2">6.5%</div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-1">Growth Rate</h3>
+
+                <div class="card-modern p-8 text-center" style="background: white;">
+                    <div class="text-4xl font-bold mb-3" style="color: var(--warm-coral);">6.5%</div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Growth Rate</h3>
                     <p class="text-sm text-gray-600">Annual market growth (CAGR)</p>
                 </div>
-                
-                <div class="text-center card-hover bg-sage-50 p-6 rounded-lg">
-                    <div class="text-3xl font-bold text-green-600 mb-2">₹200Cr</div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-1">Indian Market</h3>
+
+                <div class="card-modern p-8 text-center" style="background: white;">
+                    <div class="text-4xl font-bold mb-3" style="color: var(--terracotta);">₹200Cr</div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Indian Market</h3>
                     <p class="text-sm text-gray-600">Potential user base in India</p>
                 </div>
-                
-                <div class="text-center card-hover bg-purple-50 p-6 rounded-lg">
-                    <div class="text-3xl font-bold text-purple-600 mb-2">70%</div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-1">Gross Margin</h3>
+
+                <div class="card-modern p-8 text-center" style="background: white;">
+                    <div class="text-4xl font-bold mb-3" style="color: var(--deep-orange);">70%</div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Gross Margin</h3>
                     <p class="text-sm text-gray-600">Projected business profitability</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
     <!-- Call to Action -->
-    <section class="py-20 bg-teal-primary">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-display font-bold text-white mb-6">Join Our Mission to Save Lives</h2>
-            <p class="text-xl text-white mb-8 leading-relaxed">
-                We're seeking ₹1 Crore in seed funding to expand our AI development, marketing efforts, and team. 
+    <section class="py-24 relative overflow-hidden" style="background: var(--primary-orange);">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-5xl font-display font-bold text-white mb-6">Join Our Mission to Save Lives</h2>
+            <p class="text-xl text-white/95 mb-10 leading-relaxed">
+                We're seeking ₹1 Crore in seed funding to expand our AI development, marketing efforts, and team.
                 Together, we can make mental health support accessible to everyone who needs it.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="contact.html" class="bg-white text-teal-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+                <a href="contact.html" class="btn-secondary">
                     Invest in SoberTone
                 </a>
-                <a href="about.html" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-teal-primary transition-colors">
+                <a href="about.html" class="btn-secondary">
                     Meet Our Team
                 </a>
             </div>
@@ -429,40 +599,40 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
+    <footer class="bg-warm-dark text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
                 <div>
                     <div class="flex items-center mb-4">
-                        <img src="image1.png" alt="SoberTone Logo" class="h-8 w-auto">
-                        <span class="ml-2 text-lg font-display font-bold">SoberTone</span>
+                        <img src="image1.png" alt="SoberTone Logo" class="h-10 w-auto">
+                        <span class="ml-3 text-xl text-gray-400 font-display font-bold">SoberTone</span>
                     </div>
-                    <p class="text-gray-300 text-sm">
+                    <p class="text-gray-400 leading-relaxed">
                         AI-powered addiction prevention support making mental health accessible to everyone.
                     </p>
                 </div>
-                
+
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
-                        <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a></li>
-                        <li><a href="resources.html" class="text-gray-300 hover:text-white transition-colors">Resources</a></li>
-                        <li><a href="contact.html" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-400">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-warm-coral transition-colors">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-warm-coral transition-colors">About</a></li>
+                        <li><a href="resources.html" class="text-gray-400 hover:text-warm-coral transition-colors">Resources</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-warm-coral transition-colors">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-400">Contact Info</h3>
+                    <ul class="space-y-3 text-gray-400">
                         <li>Email: sober1t12@gmail.com</li>
                         <li>Phone: +91-6367707168</li>
                         <li>Location: LPU, Punjab, India</li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
                 <p>&copy; 2024 SoberTone. All rights reserved. Making mental health support accessible to all.</p>
             </div>
         </div>
@@ -470,4 +640,4 @@
 
     <script src="main.js"></script>
 </body>
-</h
+</html>
