@@ -374,4 +374,5 @@ function animateValue(element, start, end, duration) {
         }
     }
 
-    requestAnimationFrame(updateValue)
+    requestAnimationFrame(updateValue);
+}
