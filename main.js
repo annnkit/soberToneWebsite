@@ -233,7 +233,7 @@ function initializeTeamCards() {
             bio: "Ankit is a passionate AI/ML specialist with deep interest in behavioral psychology. He founded SoberTone with the vision of using technology to make mental health support accessible to everyone. His background in machine learning and understanding of human behavior drives the innovative approach of SoberTone's AI voice technology."
         },
         {
-            name: "Ayush",
+            name: "Ayush Raj",
             role: "Tech Lead",
             expertise: "AI Voice Engine, App Architecture",
             image: "resources/team-ayush.jpg",
