@@ -229,7 +229,7 @@ function initializeTeamCards() {
             name: "Ankit Jangir",
             role: "Founder & CEO",
             expertise: "AI/ML Specialist, Behavioral Psychology",
-            image: "resources/team-ankit.jpeg",
+            image: "resources/team-ankit.png",
             bio: "Ankit is a passionate AI/ML specialist with deep interest in behavioral psychology. He founded SoberTone with the vision of using technology to make mental health support accessible to everyone. His background in machine learning and understanding of human behavior drives the innovative approach of SoberTone's AI voice technology."
         },
         {
