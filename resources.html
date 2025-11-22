@@ -6,110 +6,553 @@
     <title>Addiction Resources - SoberTone</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --purple-primary: #36008c;
-            --blue-secondary: #11c9e6;
-            --cyan-accent: #9fc8d3;
-            --navy-dark: #114fa1;
-            --white-neutral: #FFFFFF;
+            --terracotta: #4A9B9B;
+            --warm-coral: #7FB069;
+            --golden-honey: #F4B860;
+            --deep-terracotta: #3A7B7B;
+            --peach-cream: #FAF7F2;
+            --warm-dark: #2C3E50;
+            --accent-amber: #F4B860;
+            --soft-coral: #F4A896;
+            --warm-white: #FFFFFF;
+            --warm-bg: #FAF7F2;
+            --soft-peach: #E8F4F4;
+            --burnt-orange: #7FB069;
+            --warm-gray: #5D6D7E;
         }
-        
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--white-neutral);
-            color: var(--navy-dark);
+            background-color: var(--warm-bg);
+            color: var(--warm-dark);
         }
-        
+
         .font-display {
             font-family: 'Playfair Display', serif;
         }
-        
-        .text-purple-primary {
-            color: var(--purple-primary);
+
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--terracotta) 0%, var(--warm-coral) 50%, var(--golden-honey) 100%);
         }
-        
-        .text-blue-secondary {
-            color: var(--blue-secondary);
+
+        .card-modern {
+            background: white;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 107, 53, 0.1);
         }
-        
-        .bg-purple-primary {
-            background-color: var(--purple-primary);
+
+        .card-modern:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15);
         }
-        
-        .bg-blue-secondary {
-            background-color: var(--blue-secondary);
+
+        .section-header {
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .section-header {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+            }
+
+            .card-modern {
+                border-radius: 15px;
+            }
+
+            .card-modern:hover {
+                transform: translateY(-4px);
+            }
+
+            /* Fix icon sizing on mobile */
+            svg {
+
+            /* Image optimizations */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+                flex-shrink: 0;
+                max-width: 24px;
+                max-height: 24px;
+            }
+
+            /* Better touch targets */
+            button, a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .hero-gradient h1 {
+                font-size: 2.5rem !important;
+            }
+
+            .card-modern {
+                padding: 1.25rem !important;
+            }
         }
-        
-        .card-hover {
+
+        @media (max-width: 480px) {
+            .section-header {
+                font-size: 1.75rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .hero-gradient h1 {
+                font-size: 2rem !important;
+            }
+
+            svg {
+
+            /* Image optimizations */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+                max-width: 20px;
+                max-height: 20px;
+            }
+        }
+            font-size: 3rem;
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .section-header {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+            }
+
+            .card-modern {
+                border-radius: 15px;
+            }
+
+            .card-modern:hover {
+                transform: translateY(-4px);
+            }
+
+            /* Fix icon sizing on mobile */
+            svg {
+
+            /* Image optimizations */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+                flex-shrink: 0;
+                max-width: 24px;
+                max-height: 24px;
+            }
+
+            /* Better touch targets */
+            button, a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .hero-gradient h1 {
+                font-size: 2.5rem !important;
+            }
+
+            .card-modern {
+                padding: 1.25rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-header {
+                font-size: 1.75rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .hero-gradient h1 {
+                font-size: 2rem !important;
+            }
+
+            svg {
+
+            /* Image optimizations */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+                max-width: 20px;
+                max-height: 20px;
+            }
+        }
+            font-weight: 800;
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .section-header {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+            }
+
+            .card-modern {
+                border-radius: 15px;
+            }
+
+            .card-modern:hover {
+                transform: translateY(-4px);
+            }
+
+            /* Fix icon sizing on mobile */
+            svg {
+
+            /* Image optimizations */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+                flex-shrink: 0;
+                max-width: 24px;
+                max-height: 24px;
+            }
+
+            /* Better touch targets */
+            button, a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .hero-gradient h1 {
+                font-size: 2.5rem !important;
+            }
+
+            .card-modern {
+                padding: 1.25rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-header {
+                font-size: 1.75rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .hero-gradient h1 {
+                font-size: 2rem !important;
+            }
+
+            svg {
+
+            /* Image optimizations */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+                max-width: 20px;
+                max-height: 20px;
+            }
+        }
+            color: var(--warm-dark);
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .section-header {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+            }
+
+            .card-modern {
+                border-radius: 15px;
+            }
+
+            .card-modern:hover {
+                transform: translateY(-4px);
+            }
+
+            /* Fix icon sizing on mobile */
+            svg {
+
+            /* Image optimizations */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+                flex-shrink: 0;
+                max-width: 24px;
+                max-height: 24px;
+            }
+
+            /* Better touch targets */
+            button, a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .hero-gradient h1 {
+                font-size: 2.5rem !important;
+            }
+
+            .card-modern {
+                padding: 1.25rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-header {
+                font-size: 1.75rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .hero-gradient h1 {
+                font-size: 2rem !important;
+            }
+
+            svg {
+
+            /* Image optimizations */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+                max-width: 20px;
+                max-height: 20px;
+            }
+        }
+            margin-bottom: 1.5rem;
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .section-header {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+            }
+
+            .card-modern {
+                border-radius: 15px;
+            }
+
+            .card-modern:hover {
+                transform: translateY(-4px);
+            }
+
+            /* Fix icon sizing on mobile */
+            svg {
+
+            /* Image optimizations */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+                flex-shrink: 0;
+                max-width: 24px;
+                max-height: 24px;
+            }
+
+            /* Better touch targets */
+            button, a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .hero-gradient h1 {
+                font-size: 2.5rem !important;
+            }
+
+            .card-modern {
+                padding: 1.25rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-header {
+                font-size: 1.75rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .hero-gradient h1 {
+                font-size: 2rem !important;
+            }
+
+            svg {
+
+            /* Image optimizations */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+                max-width: 20px;
+                max-height: 20px;
+            }
+        }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--terracotta), var(--warm-coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .warning-card {
+            background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+            border-left: 5px solid #F59E0B;
+            border-radius: 15px;
+        }
+
+        .prevention-card {
+            background: linear-gradient(135deg, #D1FAE5, #A7F3D0);
+            border-left: 5px solid #10B981;
+            border-radius: 15px;
+        }
+
+        .recovery-card {
+            background: linear-gradient(135deg, #DBEAFE, #BFDBFE);
+            border-left: 5px solid #3B82F6;
+            border-radius: 15px;
+        }
+
+        .crisis-alert {
+            background: linear-gradient(135deg, #FEE2E2, #FECACA);
+            border: 2px solid #EF4444;
+            border-radius: 20px;
+        }
+
+        .nav-link {
+            color: var(--warm-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--terracotta);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--terracotta), var(--warm-coral));
+            border-radius: 2px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--terracotta), var(--warm-coral));
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
             transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
-        
-        .card-hover:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
         }
-        
-        .animate-fade-in-up {
-            animation: fadeInUp 0.6s ease-out forwards;
+
+        .btn-secondary {
+            background: white;
+            color: var(--terracotta);
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid white;
         }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
         }
-        
-        .resource-category {
-            border-left: 4px solid var(--teal-primary);
-            background: linear-gradient(90deg, rgba(44, 95, 93, 0.05) 0%, transparent 100%);
-        }
-        
-        .warning-signs {
-            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
-            border-left: 4px solid #F59E0B;
-        }
-        
-        .prevention-tips {
-            background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
-            border-left: 4px solid #10B981;
-        }
-        
-        .recovery-resources {
-            background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%);
-            border-left: 4px solid #3B82F6;
+
+        .stat-badge {
+            background: white;
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.1);
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <nav class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <img src="image1.png" alt="SoberTone Logo" class="h-10 w-auto">
-                    <span class="ml-3 text-xl font-display font-bold text-purple-primary">SoberTone</span>
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <img src="image1.png" alt="SoberTone Logo" class="h-12 w-auto">
+                    <span class="text-2xl font-display font-bold gradient-text">SoberTone</span>
                 </div>
-                
-                <!-- Desktop Navigation -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="index.html" class="text-gray-600 hover:text-teal-primary px-3 py-2 rounded-md transition-colors">Home</a>
-                        <a href="about.html" class="text-gray-600 hover:text-teal-primary px-3 py-2 rounded-md transition-colors">About</a>
-                        <a href="resources.html" class="text-purple-primary font-medium px-3 py-2 rounded-md">Resources</a>
-                        <a href="contact.html" class="text-gray-600 hover:text-teal-primary px-3 py-2 rounded-md transition-colors">Contact</a>
-                    </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="resources.html" class="nav-link active">Resources</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
                 </div>
-                
-                <!-- Mobile menu button -->
+
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-600 hover:text-purple-primary">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-terracotta transition-colors">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -117,103 +560,85 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="md:hidden hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-                <a href="index.html" class="text-gray-600 hover:text-purple-primary block px-3 py-2 rounded-md transition-colors">Home</a>
-                <a href="about.html" class="text-gray-600 hover:text-purple-primary block px-3 py-2 rounded-md transition-colors">About</a>
-                <a href="resources.html" class="text-purple-primary font-medium block px-3 py-2 rounded-md">Resources</a>
-                <a href="contact.html" class="text-gray-600 hover:text-purple-primary block px-3 py-2 rounded-md transition-colors">Contact</a>
+
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-4 pt-4 pb-6 space-y-3">
+                <a href="index.html" class="block nav-link py-2">Home</a>
+                <a href="about.html" class="block nav-link py-2">About</a>
+                <a href="resources.html" class="block text-terracotta font-semibold py-2">Resources</a>
+                <a href="contact.html" class="block nav-link py-2">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="bg-purple-primary py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-5xl font-display font-bold text-white mb-6">Addiction Resources & Information</h1>
-            <p class="text-xl text-white max-w-3xl mx-auto leading-relaxed">
-                Comprehensive information about addiction, prevention strategies, and recovery resources to help you 
+    <section class="hero-gradient py-24 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h1 class="text-6xl font-display font-bold text-white mb-6">Addiction Resources & Information</h1>
+            <p class="text-xl text-white/95 max-w-3xl mx-auto leading-relaxed">
+                Comprehensive information about addiction, prevention strategies, and recovery resources to help you
                 or your loved ones on the journey to wellness.
             </p>
         </div>
     </section>
 
-    <!-- Addiction Facts -->
-    <section class="py-20 bg-white">
+    <!-- Understanding Addiction -->
+    <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-display font-bold text-teal-primary mb-6">Understanding Addiction</h2>
+                <h2 class="section-header font-display">Understanding Addiction</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Addiction is a complex disease that affects the brain and behavior. Understanding its nature is the first step toward recovery.
                 </p>
             </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-                <div>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">What is Addiction?</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
+                <div class="card-modern p-10">
+                    <h3 class="text-3xl font-display font-bold gradient-text mb-6">What is Addiction?</h3>
                     <div class="space-y-4 text-gray-700 leading-relaxed">
                         <p>
-                            Addiction is a chronic disease characterized by drug seeking and use that is compulsive, 
-                            or difficult to control, despite harmful consequences. It is considered a brain disease 
+                            Addiction is a chronic disease characterized by drug seeking and use that is compulsive,
+                            or difficult to control, despite harmful consequences. It is considered a brain disease
                             because drugs change the brain—they change its structure and how it works.
                         </p>
                         <p>
-                            These brain changes can be long-lasting and can lead to the harmful behaviors seen in 
-                            people who abuse drugs. Addiction is a lot like other diseases, such as heart disease. 
+                            These brain changes can be long-lasting and can lead to the harmful behaviors seen in
+                            people who abuse drugs. Addiction is a lot like other diseases, such as heart disease.
                             Both disrupt the normal, healthy functioning of the underlying organ.
                         </p>
                         <p>
-                            Most drugs affect the brain's "reward circuit," causing euphoria as well as flooding 
-                            it with the chemical messenger dopamine. A properly functioning reward system motivates 
+                            Most drugs affect the brain's "reward circuit," causing euphoria as well as flooding
+                            it with the chemical messenger dopamine. A properly functioning reward system motivates
                             a person to repeat behaviors needed to thrive.
                         </p>
                     </div>
                 </div>
-                
-                <div class="bg-gray-50 p-8 rounded-lg">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Key Statistics</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                                <span class="text-2xl font-bold text-red-600">350M</span>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-gray-800">People affected globally</p>
-                                <p class="text-sm text-gray-600">According to WHO estimates</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
-                                <span class="text-2xl font-bold text-orange-600">60%</span>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-gray-800">Relapse rate</p>
-                                <p class="text-sm text-gray-600">Within first year of treatment</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                                <span class="text-2xl font-bold text-blue-600">21M</span>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-gray-800">Americans with addiction</p>
-                                <p class="text-sm text-gray-600">Ages 12 and older</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                                <span class="text-2xl font-bold text-green-600">90%</span>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-gray-800">Recovery possible</p>
-                                <p class="text-sm text-gray-600">With proper treatment and support</p>
-                            </div>
-                        </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="stat-badge text-center">
+                        <div class="text-4xl font-bold gradient-text mb-2">350M</div>
+                        <p class="text-sm font-semibold text-gray-800">People affected globally</p>
+                        <p class="text-xs text-gray-600">WHO estimates</p>
+                    </div>
+                    <div class="stat-badge text-center">
+                        <div class="text-4xl font-bold gradient-text mb-2">60%</div>
+                        <p class="text-sm font-semibold text-gray-800">Relapse rate</p>
+                        <p class="text-xs text-gray-600">Within first year</p>
+                    </div>
+                    <div class="stat-badge text-center">
+                        <div class="text-4xl font-bold gradient-text mb-2">21M</div>
+                        <p class="text-sm font-semibold text-gray-800">Americans affected</p>
+                        <p class="text-xs text-gray-600">Ages 12 and older</p>
+                    </div>
+                    <div class="stat-badge text-center">
+                        <div class="text-4xl font-bold gradient-text mb-2">90%</div>
+                        <p class="text-sm font-semibold text-gray-800">Recovery possible</p>
+                        <p class="text-xs text-gray-600">With proper support</p>
                     </div>
                 </div>
             </div>
@@ -221,49 +646,121 @@
     </section>
 
     <!-- Types of Addiction -->
-    <section class="py-20 bg-gray-50">
+    <section class="py-24" style="background: var(--cream-bg);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-display font-bold text-teal-primary mb-6">Types of Addiction</h2>
+                <h2 class="section-header font-display gradient-text">Types of Addiction</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Addiction can manifest in various forms. Understanding different types helps in recognizing and addressing specific challenges.
                 </p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="resource-category bg-white p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Substance Addiction</h3>
-                    <ul class="space-y-2 text-gray-600">
-                        <li>• Alcohol dependency</li>
-                        <li>• Opioid addiction (prescription painkillers, heroin)</li>
-                        <li>• Stimulants (cocaine, methamphetamine)</li>
-                        <li>• Benzodiazepines (anti-anxiety medications)</li>
-                        <li>• Cannabis dependency</li>
-                        <li>• Nicotine addiction</li>
+                <div class="card-modern p-8">
+                    <h3 class="text-2xl font-bold gradient-text mb-6">Substance Addiction</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Alcohol dependency
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Opioid addiction
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Stimulants (cocaine, meth)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Cannabis dependency
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Nicotine addiction
+                        </li>
                     </ul>
                 </div>
-                
-                <div class="resource-category bg-white p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Behavioral Addiction</h3>
-                    <ul class="space-y-2 text-gray-600">
-                        <li>• Gambling addiction</li>
-                        <li>• Gaming addiction</li>
-                        <li>• Internet and social media addiction</li>
-                        <li>• Shopping addiction</li>
-                        <li>• Food addiction</li>
-                        <li>• Exercise addiction</li>
+
+                <div class="card-modern p-8">
+                    <h3 class="text-2xl font-bold gradient-text mb-6">Behavioral Addiction</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Gambling addiction
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Gaming addiction
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Internet/social media
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Shopping addiction
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Food addiction
+                        </li>
                     </ul>
                 </div>
-                
-                <div class="resource-category bg-white p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Prescription Drug Addiction</h3>
-                    <ul class="space-y-2 text-gray-600">
-                        <li>• Opioid pain relievers</li>
-                        <li>• Anti-anxiety medications</li>
-                        <li>• Sleep medications</li>
-                        <li>• Stimulants for ADHD</li>
-                        <li>• Antidepressants</li>
-                        <li>• Muscle relaxants</li>
+
+                <div class="card-modern p-8">
+                    <h3 class="text-2xl font-bold gradient-text mb-6">Prescription Drugs</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Opioid pain relievers
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Anti-anxiety medications
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Sleep medications
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Stimulants for ADHD
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Muscle relaxants
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -271,210 +768,137 @@
     </section>
 
     <!-- Warning Signs -->
-    <section class="py-20 bg-white">
+    <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-display font-bold text-teal-primary mb-6">Warning Signs of Addiction</h2>
+                <h2 class="section-header font-display">Warning Signs of Addiction</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Early recognition of addiction signs can lead to earlier intervention and better outcomes.
                 </p>
             </div>
-            
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="warning-signs p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-orange-800 mb-4">Physical Signs</h3>
-                    <ul class="space-y-2 text-orange-700">
-                        <li>• Changes in appetite or sleep patterns</li>
-                        <li>• Sudden weight loss or gain</li>
-                        <li>• Deterioration of physical appearance</li>
-                        <li>• Unusual smells on breath, body, or clothing</li>
-                        <li>• Tremors, slurred speech, or impaired coordination</li>
-                        <li>• Frequent nosebleeds or runny nose</li>
+                <div class="warning-card p-8">
+                    <h3 class="text-2xl font-bold text-amber-900 mb-6">Physical & Behavioral Signs</h3>
+                    <ul class="space-y-3 text-amber-800">
+                        <li class="flex items-start">
+                            <span class="font-bold mr-2">•</span>
+                            Changes in appetite or sleep patterns
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold mr-2">•</span>
+                            Sudden weight loss or gain
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold mr-2">•</span>
+                            Drop in work/school performance
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold mr-2">•</span>
+                            Secretive or suspicious behaviors
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold mr-2">•</span>
+                            Neglecting responsibilities
+                        </li>
                     </ul>
                 </div>
-                
-                <div class="warning-signs p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-orange-800 mb-4">Behavioral Signs</h3>
-                    <ul class="space-y-2 text-orange-700">
-                        <li>• Drop in attendance or performance at work/school</li>
-                        <li>• Unexplained financial problems or need for money</li>
-                        <li>• Engaging in secretive or suspicious behaviors</li>
-                        <li>• Sudden change in friends, hangouts, and hobbies</li>
-                        <li>• Frequently getting into trouble (fights, accidents)</li>
-                        <li>• Neglecting responsibilities and relationships</li>
-                    </ul>
-                </div>
-                
-                <div class="warning-signs p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-orange-800 mb-4">Psychological Signs</h3>
-                    <ul class="space-y-2 text-orange-700">
-                        <li>• Unexplained change in personality or attitude</li>
-                        <li>• Mood swings, irritability, or angry outbursts</li>
-                        <li>• Periods of unusual hyperactivity or agitation</li>
-                        <li>• Lack of motivation or appearing lethargic</li>
-                        <li>• Fearful, anxious, or paranoid without reason</li>
-                        <li>• Appearing anxious or withdrawn</li>
-                    </ul>
-                </div>
-                
-                <div class="warning-signs p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-orange-800 mb-4">Social Signs</h3>
-                    <ul class="space-y-2 text-orange-700">
-                        <li>• Isolation from family and friends</li>
-                        <li>• Loss of interest in previously enjoyed activities</li>
-                        <li>• Relationship problems with partners, family, or friends</li>
-                        <li>• Changes in social circles or new friends</li>
-                        <li>• Legal problems related to substance use</li>
-                        <li>• Denial or minimization of substance use</li>
+
+                <div class="warning-card p-8">
+                    <h3 class="text-2xl font-bold text-amber-900 mb-6">Psychological & Social Signs</h3>
+                    <ul class="space-y-3 text-amber-800">
+                        <li class="flex items-start">
+                            <span class="font-bold mr-2">•</span>
+                            Unexplained personality changes
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold mr-2">•</span>
+                            Mood swings and irritability
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold mr-2">•</span>
+                            Isolation from family and friends
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold mr-2">•</span>
+                            Loss of interest in activities
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold mr-2">•</span>
+                            Denial or minimization
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Prevention Strategies -->
-    <section class="py-20 bg-gray-50">
+    <!-- Prevention & Recovery -->
+    <section class="py-24" style="background: var(--cream-bg);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-display font-bold text-teal-primary mb-6">Prevention Strategies</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Evidence-based approaches to prevent addiction and support early intervention.
-                </p>
+                <h2 class="section-header font-display gradient-text">Prevention & Recovery</h2>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="prevention-tips p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-green-800 mb-4">Individual Strategies</h3>
-                    <ul class="space-y-3 text-green-700">
-                        <li><strong>Develop healthy coping mechanisms:</strong> Learn stress management techniques like meditation, exercise, or creative activities.</li>
-                        <li><strong>Build strong relationships:</strong> Maintain connections with family, friends, and supportive communities.</li>
-                        <li><strong>Set clear boundaries:</strong> Establish personal limits and stick to them, especially in social situations.</li>
-                        <li><strong>Practice self-care:</strong> Prioritize physical and mental health through regular exercise, proper nutrition, and adequate sleep.</li>
-                        <li><strong>Seek help early:</strong> Address mental health concerns promptly before they escalate.</li>
-                    </ul>
-                </div>
-                
-                <div class="prevention-tips p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-green-800 mb-4">Family & Community Strategies</h3>
-                    <ul class="space-y-3 text-green-700">
-                        <li><strong>Open communication:</strong> Foster honest, non-judgmental conversations about substance use and mental health.</li>
-                        <li><strong>Education and awareness:</strong> Learn about the risks and signs of addiction to recognize problems early.</li>
-                        <li><strong>Create supportive environments:</strong> Build communities that promote healthy lifestyles and positive activities.</li>
-                        <li><strong>Monitor and supervise:</strong> Stay involved in children's lives and know their friends and activities.</li>
-                        <li><strong>Model healthy behavior:</strong> Demonstrate responsible substance use and effective stress management.</li>
-                    </ul>
-                </div>
-                
-                <div class="prevention-tips p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-green-800 mb-4">Environmental Strategies</h3>
-                    <ul class="space-y-3 text-green-700">
-                        <li><strong>Reduce availability:</strong> Limit access to substances in homes and communities.</li>
-                        <li><strong>Promote positive alternatives:</strong> Support recreational, educational, and employment opportunities.</li>
-                        <li><strong>Strengthen policies:</strong> Advocate for evidence-based substance use policies and regulations.</li>
-                        <li><strong>Improve mental health services:</strong> Increase access to counseling and mental health resources.</li>
-                        <li><strong>Address social determinants:</strong> Tackle poverty, discrimination, and other root causes of addiction.</li>
-                    </ul>
-                </div>
-                
-                <div class="prevention-tips p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-green-800 mb-4">Early Intervention</h3>
-                    <ul class="space-y-3 text-green-700">
-                        <li><strong>Screen regularly:</strong> Implement routine screening in healthcare, schools, and workplaces.</li>
-                        <li><strong>Brief interventions:</strong> Provide short-term counseling and motivational support.</li>
-                        <li><strong>Referral to treatment:</strong> Connect at-risk individuals with appropriate professional help.</li>
-                        <li><strong>Support groups:</strong> Facilitate peer support and mutual aid groups.</li>
-                        <li><strong>Family involvement:</strong> Include family members in prevention and intervention efforts.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Recovery Resources -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-display font-bold text-teal-primary mb-6">Recovery Resources</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Comprehensive support options and treatment approaches for addiction recovery.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="recovery-resources p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-blue-800 mb-4">Treatment Options</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <h4 class="font-semibold text-blue-700 mb-2">Detoxification</h4>
-                            <p class="text-blue-600 text-sm">Medical supervision to safely manage withdrawal symptoms</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-blue-700 mb-2">Inpatient Rehabilitation</h4>
-                            <p class="text-blue-600 text-sm">Intensive, 24/7 treatment in a residential facility</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-blue-700 mb-2">Outpatient Programs</h4>
-                            <p class="text-blue-600 text-sm">Regular treatment sessions while living at home</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-blue-700 mb-2">Medication-Assisted Treatment</h4>
-                            <p class="text-blue-600 text-sm">FDA-approved medications combined with counseling</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-blue-700 mb-2">Therapy & Counseling</h4>
-                            <p class="text-blue-600 text-sm">Individual, group, and family therapy sessions</p>
-                        </div>
-                    </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div class="prevention-card p-8">
+                    <h3 class="text-2xl font-bold text-green-900 mb-6">Prevention Strategies</h3>
+                    <ul class="space-y-4 text-green-800">
+                        <li>
+                            <strong>Develop healthy coping:</strong> Learn stress management techniques
+                        </li>
+                        <li>
+                            <strong>Build relationships:</strong> Maintain supportive connections
+                        </li>
+                        <li>
+                            <strong>Practice self-care:</strong> Prioritize physical and mental health
+                        </li>
+                        <li>
+                            <strong>Seek help early:</strong> Address concerns before they escalate
+                        </li>
+                    </ul>
                 </div>
-                
-                <div class="recovery-resources p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-blue-800 mb-4">Support Systems</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <h4 class="font-semibold text-blue-700 mb-2">12-Step Programs</h4>
-                            <p class="text-blue-600 text-sm">AA, NA, and other peer support fellowships</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-blue-700 mb-2">Smart Recovery</h4>
-                            <p class="text-blue-600 text-sm">Science-based alternative to 12-step programs</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-blue-700 mb-2">Sober Living Homes</h4>
-                            <p class="text-blue-600 text-sm">Structured, substance-free living environments</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-blue-700 mb-2">Family Therapy</h4>
-                            <p class="text-blue-600 text-sm">Healing relationships and building family support</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-blue-700 mb-2">Aftercare Programs</h4>
-                            <p class="text-blue-600 text-sm">Ongoing support following initial treatment</p>
-                        </div>
-                    </div>
+
+                <div class="recovery-card p-8">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-6">Recovery Resources</h3>
+                    <ul class="space-y-4 text-blue-800">
+                        <li>
+                            <strong>Professional treatment:</strong> Therapy, counseling, rehabilitation
+                        </li>
+                        <li>
+                            <strong>Support groups:</strong> AA, NA, SMART Recovery
+                        </li>
+                        <li>
+                            <strong>Medication-assisted:</strong> FDA-approved treatments
+                        </li>
+                        <li>
+                            <strong>Aftercare programs:</strong> Ongoing support and monitoring
+                        </li>
+                    </ul>
                 </div>
             </div>
-            
+
             <!-- Crisis Resources -->
-            <div class="mt-16 bg-red-50 border-l-4 border-red-400 p-8 rounded-lg">
-                <h3 class="text-2xl font-semibold text-red-800 mb-6 text-center">Crisis Resources</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="crisis-alert p-10">
+                <h3 class="text-3xl font-display font-bold text-red-800 mb-6 text-center">24/7 Crisis Resources</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <h4 class="font-semibold text-red-700 mb-2">Emergency Services</h4>
-                        <p class="text-red-600 mb-2">If you or someone you know is in immediate danger:</p>
-                        <ul class="space-y-1 text-red-600">
+                        <h4 class="text-xl font-bold text-red-700 mb-4">Emergency Services</h4>
+                        <p class="text-red-700 mb-3">If you or someone you know is in immediate danger:</p>
+                        <ul class="space-y-2 text-red-700 font-medium">
                             <li>• Call emergency services: 112 (India)</li>
                             <li>• Go to your nearest emergency room</li>
-                            <li>• Contact local crisis intervention services</li>
+                            <li>• Contact local crisis intervention</li>
                         </ul>
                     </div>
-                    
+
                     <div>
-                        <h4 class="font-semibold text-red-700 mb-2">Crisis Hotlines</h4>
-                        <p class="text-red-600 mb-2">24/7 confidential support and counseling:</p>
-                        <ul class="space-y-1 text-red-600">
-                            <li>• National Suicide Prevention Lifeline: 988</li>
-                            <li>• Crisis Text Line: Text HOME to 741741</li>
-                            <li>• SAMHSA National Helpline: 1-800-662-4357</li>
+                        <h4 class="text-xl font-bold text-red-700 mb-4">Crisis Hotlines</h4>
+                        <p class="text-red-700 mb-3">24/7 confidential support:</p>
+                        <ul class="space-y-2 text-red-700 font-medium">
+                            <li>• Suicide Prevention: 988</li>
+                            <li>• Crisis Text: HOME to 741741</li>
+                            <li>• SAMHSA Helpline: 1-800-662-4357</li>
                         </ul>
                     </div>
                 </div>
@@ -483,18 +907,23 @@
     </section>
 
     <!-- Call to Action -->
-    <section class="py-20 bg-teal-primary">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-display font-bold text-white mb-6">Ready to Take the Next Step?</h2>
-            <p class="text-xl text-white mb-8 leading-relaxed">
-                Whether you're seeking help for yourself or supporting a loved one, SoberTone is here to provide 
+    <section class="py-24 relative overflow-hidden" style="background: var(--cream-bg);">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-5xl font-display font-bold text-white mb-6">Ready to Take the Next Step?</h2>
+            <p class="text-xl text-white/95 mb-10 leading-relaxed">
+                Whether you're seeking help for yourself or supporting a loved one, SoberTone is here to provide
                 the personalized, AI-powered support you need on your recovery journey.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="contact.html" class="bg-white text-teal-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+                <a href="contact.html" class="btn-secondary">
                     Get Support Now
                 </a>
-                <a href="about.html" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-teal-primary transition-colors">
+                <a href="about.html" class="btn-secondary">
                     Learn About Our Solution
                 </a>
             </div>
@@ -502,40 +931,40 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
+    <footer class="bg-warm-dark text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
                 <div>
                     <div class="flex items-center mb-4">
-                        <img src="image1.png" alt="SoberTone Logo" class="h-8 w-auto">
-                        <span class="ml-2 text-lg font-display font-bold">SoberTone</span>
+                        <img src="image1.png" alt="SoberTone Logo" class="h-10 w-auto">
+                        <span class="ml-3 text-xl font-display font-bold text-gray-400">SoberTone</span>
                     </div>
-                    <p class="text-gray-300 text-sm">
+                    <p class="text-gray-400 leading-relaxed">
                         AI-powered addiction prevention support making mental health accessible to everyone.
                     </p>
                 </div>
-                
+
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
-                        <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a></li>
-                        <li><a href="resources.html" class="text-gray-300 hover:text-white transition-colors">Resources</a></li>
-                        <li><a href="contact.html" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-400">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-warm-coral transition-colors">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-warm-coral transition-colors">About</a></li>
+                        <li><a href="resources.html" class="text-gray-400 hover:text-warm-coral transition-colors">Resources</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-warm-coral transition-colors">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-400">Contact Info</h3>
+                    <ul class="space-y-3 text-gray-400">
                         <li>Email: sober1t12@gmail.com</li>
                         <li>Phone: +91-6367707168</li>
                         <li>Location: LPU, Punjab, India</li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
                 <p>&copy; 2024 SoberTone. All rights reserved. Making mental health support accessible to all.</p>
             </div>
         </div>
@@ -543,4 +972,4 @@
 
     <script src="main.js"></script>
 </body>
-</htm
+</html>
